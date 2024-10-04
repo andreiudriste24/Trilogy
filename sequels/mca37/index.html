@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Medius Cifra Abstrusa 37</title>
+        <link rel="icon" href="M.ico" type="image/x-icon">
+        <meta name="description" content="MCA37 (Medius Cifra Abstrusa 37) is a culture-free, abstract numerical intelligence test designed by Andrei Udriste.">
+        <style>
+            body
+            {
+                margin: 0;
+                padding: 32px 32px 64px 32px;
+                color: rgb(223, 207, 196);
+                background-color: rgb(23, 24, 25);
+            }
+
+            .test-title {
+                font-family: "Times New Roman", Times, serif;
+                font-style: italic;
+                font-weight: 500;
+                text-decoration: underline;
+                text-decoration-thickness: 2px;
+                text-decoration-style: solid;
+                text-underline-offset: 4px;
+                margin: 32px 0 8px 0;
+                text-align: center;
+                position: relative;
+            }
+
+            .copyright {
+                font-size: 12px;
+                text-align: center;
+                font-style: italic;
+            }
+
+            .info
+            {
+                margin: 20px;
+            }
+
+            .test-items-list
+            {
+                margin-top: 60px;
+                list-style-type: none;
+                zoom: 115%;
+            }
+
+            .test-items-list li
+            {
+                padding-bottom: 12px;
+                padding-top: 12px;
+            }
+
+            .test-item-counter
+            {
+                font-weight: normal;
+                font-family: 'Consolas', monospace;
+                white-space: pre;
+                display: inline-block;
+                text-align: center;
+                width: 80px;
+            }
+
+            .test-item-counter-print {
+                font-weight: normal;
+                font-family: 'Consolas', monospace;
+                white-space: pre;
+                display: inline-block;
+                text-align: center;
+                width: 80px;
+                user-select: none;
+                display: none;
+            }
+
+            .test-item
+            {
+                font-weight: normal;
+                font-family: 'Consolas', monospace;
+                line-height: 16px;
+            }
+
+            .test-item .monospace
+            {
+                font-family: 'Lucida Sans Unicode', Verdana, monospace;
+            }
+
+            .question-mark
+            {
+                color: rgb(219, 40, 40);
+            }
+
+            .domino
+            {
+                font-size: 30px;
+            }
+
+            .separator
+            {
+                border-top: 2.25pt double windowtext;
+                border-top-color: rgb(140, 130, 115);
+                width: 100%;
+                margin: 60px 0 36px 0;
+            }
+
+            .text-area
+            {
+                font-family: 'Lucida Sans Unicode', Verdana, monospace;
+                padding: 10px 40px;
+            }
+
+            a {
+                color: #ffefb0;
+                text-decoration: none;
+            }
+
+            h2 {
+                font-weight: normal;
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .toggle {
+                display: none;
+            }
+
+            label {
+                cursor: pointer;
+            }
+
+            .content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+            }
+
+            .content p {
+                line-height: 1.5;
+                margin-bottom: 6px;
+            }
+
+            .toggle:checked + label + .content {
+                max-height: 100vh;
+                transition: max-height 0.7s ease-in;
+            }
+
+            h2 {
+                display: inline-block;
+                user-select: none;
+                position: relative;
+                padding-left: 20px; 
+            }
+
+            h2::before {
+                content: "›"; 
+                position: absolute;
+                left: 0;
+                transition: transform 0.5s ease-out; 
+            }
+
+            .toggle:checked + label>h2::before {
+                transform: rotate(90deg); 
+            }
+
+            li {
+                position: relative;
+            }
+
+            li:after {
+                content: attr(data-tooltip);
+                position: absolute;
+                font-family: monospace;
+                font-size: 16px;
+                background-color: rgba(0, 0, 0, 0.7);
+                padding: 8px;
+                border-radius: 4px;
+                right: 100%;
+                bottom: 4px;
+                opacity: 0;
+                transition: opacity 0.15s ease;
+            }
+
+            li:hover::after {
+                opacity: 1;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 160px;
+                margin: 12px;
+            }
+
+            td, th {
+                border: 1px solid rgb(223, 207, 196);
+                text-align: center;
+                padding: 2px;
+            }
+
+            @media print {
+                body
+                {
+                    color: black;
+                    background-color: white;
+                }
+
+                .test-title {
+                    zoom: 80%;
+                }
+
+                .test-items-list
+                {
+                    zoom: 77%;
+                }
+
+                .text-area
+                {
+                    zoom: 75%;
+                }
+
+                .test-item-counter {
+                    display: none;
+                }
+
+                .test-item-counter-print {
+                    display: inline-block;
+                }
+
+                .content {
+                    max-height: 100vh;
+                    transition: max-height 0.7s ease-in;
+                }
+                
+                li:after {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 997px) {
+                ul.test-items-list
+                {
+                    padding: 0;
+                }
+
+                .test-title
+                {
+                    zoom: 80%;
+                }
+
+                .test-item-counter
+                {
+                    display: none;
+                }
+                
+                .info
+                {
+                    margin-left: 0;
+                }
+
+                .test-items-list
+                {
+                    zoom: 77%;
+                }
+
+                .text-area
+                {
+                    zoom: 75%;
+                    padding: 10px 0;
+                }
+                
+                li:after {
+                    right: calc(100% + 3px);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 class="test-title">Medius Cifra Abstrusa 37</h1>
+        <p class="copyright">&copy; Andrei Udriște, September 2024</p>
+
+        <ul class="test-items-list">
+            <p class="info">Download as <a href="./Medius Cifra Abstrusa 37.pdf">PDF.</a> (last updated on 30th September 2024)</p>
+            
+            <li data-tooltip="1">  <span class="test-item-counter-print">(1)</span>  <span class="test-item-counter">(𝌆𝌇)</span> <span class="test-item">4, ×2.5, 10, ×2.5, 25, ×2.5, <span class="question-mark">?</span>, ×2.5, 156.25</span></li>
+            <li data-tooltip="2">  <span class="test-item-counter-print">(2)</span>  <span class="test-item-counter">(𝌆𝌉)</span> <span class="test-item">𝌇𝌨𝌚𝌯 : 0001102102021112, 𝌖𝌩𝌙𝌭 : <span class="question-mark">?</span></span></li>
+            <li data-tooltip="3">  <span class="test-item-counter-print">(3)</span>  <span class="test-item-counter">(𝌆𝌊)</span> <span class="test-item">597864, ⨻⨹⨺⊠⊞⊟, 1512432100, ⊞⨹⊠⨻⊟⨺⊠⨻⊞⨹, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="4">  <span class="test-item-counter-print">(4)</span>  <span class="test-item-counter">(𝌆𝌏)</span> <span class="test-item">3192706584 → ⊘⊕⊖⊗⊗⊗⊖⊕⊘ → 310714001132, 3192706584 → ⊖⊕⊗⊕⊕⊘⊗⊗⊖ → <span class="question-mark">?</span></span></li>
+            <li data-tooltip="5">  <span class="test-item-counter-print">(5)</span>  <span class="test-item-counter">(𝌆𝌐)</span> <span class="test-item"><span class="domino">🂐</span> 18 <span class="domino">🁵🂌</span> 38 <span class="domino">🂅🁂🂇</span> 23 <span class="domino">🁇🁥🁳🀹</span> 0 <span class="domino">🁻🁼🁡🂂🂃</span> <span class="question-mark">?</span></span></li>
+            <li data-tooltip="6">  <span class="test-item-counter-print">(6)</span>  <span class="test-item-counter">(𝌆𝌒)</span> <span class="test-item">( 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ) ~ ( -17, 11, <span class="question-mark">?</span>, <span class="question-mark">?</span>, -1, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 7, 10, 17, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 71 )</span></li>
+            <li data-tooltip="7">  <span class="test-item-counter-print">(7)</span>  <span class="test-item-counter">(𝌆𝌓)</span> <span class="test-item">1986342075: 9, 66666666, 444, 00, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="8">  <span class="test-item-counter-print">(8)</span>  <span class="test-item-counter">(𝌆𝌡)</span> <span class="test-item">125, 11.11.11.11.11, 216, 2.2.2.2.2.2, 343, 3333.3333.3333, <span class="question-mark">?</span>, 5.5, 729, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="9">  <span class="test-item-counter-print">(9)</span>  <span class="test-item-counter">(𝌆𝌢)</span> <span class="test-item">●○○, 1/23, ○●○●○, 24/135, ○●●○○○●, 237/1456, ○○●●○●○●○, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="10">  <span class="test-item-counter-print">(10)</span>  <span class="test-item-counter">(𝌆𝌤)</span> <span class="test-item">8|7|6|5|4|3|2, 44|313|33|212|22|111|11, 2222|1561156|16116|106106|1111|55155|515, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="11">  <span class="test-item-counter-print">(11)</span>  <span class="test-item-counter">(𝌆𝌥)</span> <span class="test-item">0, 2, 0000, 8, 06, 0002, 0000004, 0200000000, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 120000</span></li>
+            <li data-tooltip="12">  <span class="test-item-counter-print">(12)</span>  <span class="test-item-counter">(𝌆𝌪)</span> <span class="test-item">&gt;&gt;&lt;&lt;&gt;&gt;&gt;&lt;&lt;&gt;&lt;&gt;, LJIEDABCFGHKM, <span class="question-mark">?</span>, XUSQPONRTVWYZ</span></li> 
+            <li data-tooltip="13">  <span class="test-item-counter-print">(13)</span>  <span class="test-item-counter">(𝌆𝌫)</span> <span class="test-item">22.1, 22, 34.4, 1336336, 46.7, <span class="question-mark">?</span>, 59, 1, <span class="question-mark">?</span>, 357911</span></li>
+            <li data-tooltip="14">  <span class="test-item-counter-print">(14)</span>  <span class="test-item-counter">(𝌆𝌭)</span> <span class="test-item">(0), (5]155[3), (1]0[0]0[6), (1]5[5]42005[9), <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, (4]8[2]8[4), (4]21668[7]4318869[7), (5]155[3]0[0)</span></li>
+            <li data-tooltip="15">  <span class="test-item-counter-print">(15)</span>  <span class="test-item-counter">(𝌆𝌮)</span> <span class="test-item">20040825192024: ⊷⊶⊶⊶ ⊷⊶⊶, 17, -8, ⊶⊷⊶ ⊶⊶ ⊷⊷, 2, 11, 0, ⊶⊷⊷⊷⊷⊶⊶, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="16">  <span class="test-item-counter-print">(16)</span>  <span class="test-item-counter">(𝌇𝌆)</span> <span class="test-item">$‡ + $» = ¤§‡, ^ × $ × & = ¤»&, ~ × §¤^ = #~!, ^¤‡~$»!&§# = <span class="question-mark">?</span></li>
+            <li data-tooltip="17">  <span class="test-item-counter-print">(17)</span>  <span class="test-item-counter">(𝌇𝌇)</span> <span class="test-item">⢈⡂⠰⠎⡉⠣⠕ = 10101010101010, ⣾⣷⣽⣯⣻⣟⢿⡿ = 3534333231302928, ⢸⣝⣹⢷⣫⣯⢹⣿⣻ = <span class="question-mark">?</span></span></span></li>
+            <li data-tooltip="18">  <span class="test-item-counter-print">(18)</span>  <span class="test-item-counter">(𝌇𝌉)</span> <span class="test-item">+2864735x, 1064715, <span class="question-mark">?</span>, 283435, 283135, <span class="question-mark">?</span>, 166478, x2864735+</span></li>
+            <li data-tooltip="19">  <span class="test-item-counter-print">(19)</span>  <span class="test-item-counter">(𝌇𝌊)</span> <span class="test-item">(9)[1, 44], (44, 1)[9, 00], <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 04]</span></li>
+            <li data-tooltip="20">  <span class="test-item-counter-print">(20)</span>  <span class="test-item-counter">(𝌇𝌏)</span> <span class="test-item">7, 216, 02015, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 4623618421, 00000000</span></li>
+            <li data-tooltip="21">  <span class="test-item-counter-print">(21)</span>  <span class="test-item-counter">(𝌇𝌐)</span> <span class="test-item">12345, <span class="question-mark">?</span>, 357, 168, <span class="question-mark">?</span>, 12345</span></li>
+            <li data-tooltip="22">  <span class="test-item-counter-print">(22)</span>  <span class="test-item-counter">(𝌇𝌒)</span> <span class="test-item">1459, 2, 36, 1459, 1459, 36, <span class="question-mark">?</span>, 78, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="23">  <span class="test-item-counter-print">(23)</span>  <span class="test-item-counter">(𝌇𝌓)</span> <span class="test-item">1, 1, 24, 7111, 6222937, 4 6, <span class="question-mark">?</span>, 21 06 </span></li>
+            <li data-tooltip="24">  <span class="test-item-counter-print">(24)</span>  <span class="test-item-counter">(𝌇𝌡)</span> <span class="test-item">⁴₂₁¹₅₀¹₂₅⁹⁰ = 9000, ₃²₄²₅⁴₂₅⁸ = 1000, ⁰₁⁷¹₀⁷¹₀⁷¹ = <span class="question-mark">?</span></span></li>
+            <li data-tooltip="25">  <span class="test-item-counter-print">(25)</span>  <span class="test-item-counter">(𝌇𝌢)</span> <span class="test-item">1601510, 2713182, 3811611, 4914192, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="26">  <span class="test-item-counter-print">(26)</span>  <span class="test-item-counter">(𝌇𝌤)</span> <span class="test-item">-20, <span class="question-mark">?</span>, -35, 7, 2311, 4615, 6919, <span class="question-mark">?</span>, 101527</span></li>
+            <li data-tooltip="27">  <span class="test-item-counter-print">(27)</span>  <span class="test-item-counter">(𝌇𝌥)</span> <span class="test-item">282726252423, 212921182107, <span class="question-mark">?</span>, 185207419630</span></li>
+            <li data-tooltip="28">  <span class="test-item-counter-print">(28)</span>  <span class="test-item-counter">(𝌇𝌪)</span> <span class="test-item">332124, <span class="question-mark">?</span>, 1918, 10109, 10109, 1119, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="29">  <span class="test-item-counter-print">(29)</span>  <span class="test-item-counter">(𝌇𝌫)</span> <span class="test-item">0A, 1BCHKR, 2DJU, 3EILVWX, <span class="question-mark">?</span>, 5FNO, 6, <span class="question-mark">?</span>, 8GP, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="30">  <span class="test-item-counter-print">(30)</span>  <span class="test-item-counter">(𝌇𝌭)</span> <span class="test-item">12481, 2481671310145561051067712, 36123, <span class="question-mark">?</span>, 51011235, <span class="question-mark">?</span>, 7145914134891261413461237</span></li>
+            <li data-tooltip="31">  <span class="test-item-counter-print">(31)</span>  <span class="test-item-counter">(𝌇𝌮)</span> <span class="test-item">13 / ◰3◳6◲2◱1 = 3339668223111, 10 / ◰1◳2◲3◱9 = 113355LL99, 7 / ◰5◳2◲4◱3 = <span class="question-mark">?</span></span></li>
+            <li data-tooltip="32">  <span class="test-item-counter-print">(32)</span>  <span class="test-item-counter">(𝌉𝌆)</span> <span class="test-item">9876543210, 191715131197531, 1111375, 333371511, 3456, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 11</span></li>
+            <li data-tooltip="33">  <span class="test-item-counter-print">(33)</span>  <span class="test-item-counter">(𝌉𝌇)</span> <span class="test-item">1443636, 1324466, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 10.(6)16, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 10-, 126, 126, 126, 126, -</span></li>
+            <li data-tooltip="34">  <span class="test-item-counter-print">(34)</span>  <span class="test-item-counter">(𝌉𝌉)</span> <span class="test-item">84.692345 = fright, 831.3811(12) = green, 73.5(10)8391 = <span class="question-mark">?</span></span></li>
+            <li data-tooltip="35">  <span class="test-item-counter-print">(35)</span>  <span class="test-item-counter">(𝌉𝌊)</span> <span class="test-item">1, 1, 55, 141414, 1313131313, 3838383838383838, 3, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="36">  <span class="test-item-counter-print">(36)</span>  <span class="test-item-counter">(𝌉𝌏)</span> <span class="test-item">{ 9915, 7612, 123197 } : { 011233445667, 01111, 90123, 3210987, 739517395173, 90000, 1111122, <span class="question-mark">?</span> }</span></li>
+            <li data-tooltip="37">  <span class="test-item-counter-print">(37)</span>  <span class="test-item-counter">(𝌉𝌐)</span> <span class="test-item">369, (461056116713808), <span class="question-mark">?</span>, 66127815931210556511(761389171066), (761389171066)</span></li>
+        </ul>
+
+        <div class="separator"></div>
+
+        <div class="text-area">
+            <input type="checkbox" id="about-test-toggle" class="toggle">
+            <label for="about-test-toggle"><h2>About</h2></label>
+            <div class="content">
+                <p><strong>MCA37</strong> is an abstract numerical test designed to strike a balance between easy and challenging puzzles.</p>
+                <p>As a sequel to <a href="http://nsl36.net" target="_blank">NSL36</a>, it introduces a different approach while maintaining the tradition of being culture-free.</p>
+                <p>The test incorporates novel formats and ideas, so as to sidestep potential practice effects.</p>
+                <p>Note that while a pocket calculator may be useful on occasion, it is rarely necessary.</p>
+
+            </div>
+        </div>
+        <div class="text-area">
+            <input type="checkbox" id="instructions-toggle" class="toggle">
+            <label for="instructions-toggle"><h2>Submission</h2></label>
+            <div class="content">
+                <p>Email your solutions to <a href="mailto:mca37submission@gmail.com">mca37submission@gmail.com</a>. A score report will be sent to you within 24-48 hours.</p>
+                <p>Note: A submission fee of €10 is required via PayPal. You may make any number of attempts; however, only the first two will be considered official. </p>
+                <p>Official score reports will include an associated I.Q. score, based on the current norm at the time, estimated from the available data.</p>
+                <p>For the most accurate results, it is recommended that you solve the test independently.</p>
+            </div>
+        </div>
+        <div class="text-area">
+            <input type="checkbox" id="statistics-toggle" class="toggle">
+            <label for="statistics-toggle"><h2>Scorelist and Norm</h2></label>
+            <div class="content">
+                <p>Preliminary norm:</p>
+                <table>
+                    <tr>
+                        <th>Raw score</th>
+                        <th>I.Q.</th>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>122</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>131</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>149</td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>157</td>
+                    </tr>
+                    <tr>
+                        <td>31</td>
+                        <td>164</td>
+                    </tr>
+                    <tr>
+                        <td>37</td>
+                        <td>179+</td>
+                    </tr>
+                  </table>
+            </div>
+        </div>
+    </body>
+</html>

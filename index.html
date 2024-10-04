@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Numerus Strictus Logicae 36</title>
+        <link rel="icon" href="N.ico" type="image/x-icon">
+        <meta name="description" content="NSL36 (Numerus Strictus Logicae 36) is a test of challenging numerical culture-free puzzles with progressive difficulty, published by Andrei Udriste.">
+        <style>
+            body
+            {
+                margin: 0;
+                padding: 32px 32px 64px 32px;
+                color: rgb(223, 207, 196);
+                background-color: rgb(23, 24, 25);
+            }
+
+            .test-title {
+                font-family: "Times New Roman", Times, serif;
+                font-style: italic;
+                font-weight: 500;
+                text-decoration: underline;
+                text-decoration-thickness: 2px;
+                text-decoration-style: solid;
+                text-underline-offset: 4px;
+                margin: 32px 0 8px 0;
+                text-align: center;
+                position: relative;
+            }
+
+            .copyright {
+                font-size: 12px;
+                text-align: center;
+                font-style: italic;
+            }
+
+            .info
+            {
+                margin: 20px;
+            }
+
+            .test-items-list
+            {
+                margin-top: 60px;
+                list-style-type: none;
+                zoom: 115%;
+            }
+
+            .test-items-list li
+            {
+                padding-bottom: 12px;
+                padding-top: 12px;
+            }
+
+            .test-item-counter
+            {
+                font-weight: normal;
+                font-family: 'Consolas', monospace;
+                white-space: pre;
+                display: inline-block;
+                text-align: center;
+                width: 80px;
+            }
+
+            .test-item-counter-print {
+                font-weight: normal;
+                font-family: 'Consolas', monospace;
+                white-space: pre;
+                display: inline-block;
+                text-align: center;
+                width: 80px;
+                user-select: none;
+                display: none;
+            }
+
+            .test-item
+            {
+                font-weight: normal;
+                font-family: 'Consolas', monospace;
+            }
+
+            .test-item .monospace
+            {
+                font-family: 'Lucida Sans Unicode', Verdana, monospace;
+            }
+
+            .question-mark
+            {
+                color: rgb(219, 40, 40);
+            }
+
+            .separator
+            {
+                border-top: 2.25pt double windowtext;
+                border-top-color: rgb(140, 130, 115);
+                width: 100%;
+                margin: 60px 0 36px 0;
+            }
+
+            .text-area
+            {
+                font-family: 'Lucida Sans Unicode', Verdana, monospace;
+                padding: 10px 40px;
+            }
+
+            a {
+                color: #ffefb0;
+                text-decoration: none;
+            }
+
+            h2 {
+                font-weight: normal;
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .toggle {
+                display: none;
+            }
+
+            label {
+                cursor: pointer;
+            }
+
+            .content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+            }
+
+            .content p {
+                line-height: 1.5;
+                margin-bottom: 6px;
+            }
+
+            .toggle:checked + label + .content {
+                max-height: 100vh;
+                transition: max-height 0.7s ease-in;
+            }
+
+            h2 {
+                display: inline-block;
+                user-select: none;
+                position: relative;
+                padding-left: 20px; 
+            }
+
+            h2::before {
+                content: "›"; 
+                position: absolute;
+                left: 0;
+                transition: transform 0.5s ease-out; 
+            }
+
+            .toggle:checked + label>h2::before {
+                transform: rotate(90deg); 
+            }
+
+            li {
+                position: relative;
+            }
+
+            li:after {
+                content: attr(data-tooltip);
+                position: absolute;
+                font-family: monospace;
+                font-size: 16px;
+                background-color: rgba(0, 0, 0, 0.7);
+                padding: 8px;
+                border-radius: 4px;
+                right: 100%;
+                bottom: 4px;
+                opacity: 0;
+                transition: opacity 0.15s ease;
+            }
+
+            li:hover::after {
+                opacity: 1;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 300px;
+                margin: 12px;
+            }
+
+            td, th {
+                border: 1px solid rgb(223, 207, 196);
+                text-align: center;
+                padding: 2px;
+            }
+
+            @media print {
+                body
+                {
+                    color: black;
+                    background-color: white;
+                }
+
+                .test-title {
+                    zoom: 80%;
+                }
+
+                .test-items-list
+                {
+                    zoom: 77%;
+                }
+
+                .text-area
+                {
+                    zoom: 75%;
+                }
+
+                .test-item-counter {
+                    display: none;
+                }
+
+                .test-item-counter-print {
+                    display: inline-block;
+                }
+
+                .content {
+                    max-height: 100vh;
+                    transition: max-height 0.7s ease-in;
+                }
+                
+                li:after {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 997px) {
+                ul.test-items-list
+                {
+                    padding: 0;
+                }
+
+                .test-title
+                {
+                    zoom: 80%;
+                }
+
+                .test-item-counter
+                {
+                    display: none;
+                }
+
+                .info
+                {
+                    margin-left: 0;
+                }
+
+                .test-items-list
+                {
+                    zoom: 77%;
+                }
+
+                .text-area
+                {
+                    zoom: 75%;
+                    padding: 10px 0;
+                }
+                
+                li:after {
+                    right: calc(100% + 3px);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 class="test-title">Numerus Strictus Logicae 36</h1>
+        <p class="copyright">&copy; Andrei Udriște, January 2024</p>
+        
+        
+        
+        <ul class="test-items-list">
+            <p class="info">Download as <a href="./Numerus Strictus Logicae 36.pdf">PDF.</a></p>
+            <p class="info"><span class="question-mark">News!</span> A sequel to this test, <a href="http://nsl36.net/sequels/mca37" target="_blank">Medius Cifra Abstrusa 37</a>, has been published.</p>
+            
+            <li data-tooltip="1"> <span class="test-item-counter-print">(1)</span> <span class="test-item-counter">()</span> <span class="test-item">8031645427: 87, 02, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 64</span></li>
+            <li data-tooltip="2"> <span class="test-item-counter-print">(2)</span> <span class="test-item-counter">(&gt;)</span> <span class="test-item">66259008 : =&gt;&lt;&lt;&gt;=&lt;, 76855941 : <span class="question-mark">?</span></span></li>
+            <li data-tooltip="3"> <span class="test-item-counter-print">(3)</span> <span class="test-item-counter">(=)</span> <span class="test-item">641813372219/1353 = ( 6, 418, 13372, 219 ), 641813372219/2424 = ( <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span> )</span></li>
+            <li data-tooltip="4"> <span class="test-item-counter-print">(4)</span> <span class="test-item-counter">(&gt;=)</span> <span class="test-item">3644071521, 364407153, 3644079, 36420, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="5"> <span class="test-item-counter-print">(5)</span> <span class="test-item-counter">(&gt;&lt;)</span> <span class="test-item">13, 44, 888, 24242424, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 18181818181818</span></li>
+            <li data-tooltip="6"> <span class="test-item-counter-print">(6)</span> <span class="test-item-counter">(=&gt;)</span> <span class="test-item">11112222, 33343444, <span class="question-mark">?</span>, 78787878, 109109109109</span></li>
+            <li data-tooltip="7"> <span class="test-item-counter-print">(7)</span> <span class="test-item-counter">(==)</span> <span class="test-item">89, 171, 9999, 36363, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 63636363</span></li>
+            <li data-tooltip="8"> <span class="test-item-counter-print">(8)</span> <span class="test-item-counter">(&gt;==)</span> <span class="test-item">2716342, ++--+-, 985372, -++--, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 021141</span></li>
+            <li data-tooltip="9"> <span class="test-item-counter-print">(9)</span> <span class="test-item-counter">(&gt;=&lt;)</span> <span class="test-item">25.712358, 31.45914, 37.1011, <span class="question-mark">?</span>, 49.13</span></li>
+            <li data-tooltip="10"> <span class="test-item-counter-print">(10)</span> <span class="test-item-counter">(&gt;&lt;&gt;)</span> <span class="test-item">1, 44, 6, 318, 11, 222, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 21, 00</span></li>
+            <li data-tooltip="11"> <span class="test-item-counter-print">(11)</span> <span class="test-item-counter">(&gt;&lt;=)</span> <span class="test-item">11, 13, 123, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 19, 21, 1111, 23, 25, 255, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 31, 33, 343</span></li> 
+            <li data-tooltip="12"> <span class="test-item-counter-print">(12)</span> <span class="test-item-counter">(=&gt;=)</span> <span class="test-item">1, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 91011121, 3, 141, 5, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 23, 242, 52, 62, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 031</span></li>
+            <li data-tooltip="13"> <span class="test-item-counter-print">(13)</span> <span class="test-item-counter">(=&gt;&lt;)</span> <span class="test-item">000, 242, 41464, 63666, <span class="question-mark">?</span>, 10110010010, 12112412412, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="14"> <span class="test-item-counter-print">(14)</span> <span class="test-item-counter">(==&gt;)</span> <span class="test-item">352, 813, 368, 915212733394551, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 400, 416, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 710</span></li>
+            <li data-tooltip="15"> <span class="test-item-counter-print">(15)</span> <span class="test-item-counter">(===)</span> <span class="test-item">5→ = 108642, ←6 = 24680121, 4⇄4 = 6226, 3⇄5 = 404801, 8⇄7 = <span class="question-mark">?</span></span></li>
+            <li data-tooltip="16"> <span class="test-item-counter-print">(16)</span> <span class="test-item-counter">(&gt;===)</span> <span class="test-item">2, 11, 3, 101, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 15, 101010000000001, 24, 111101010001000000000001</span></li>
+            <li data-tooltip="17"> <span class="test-item-counter-print">(17)</span> <span class="test-item-counter">(&gt;==&lt;)</span> <span class="test-item">A2345678I, <span class="question-mark">?</span>, <span class="question-mark">?</span>, V8910E, I101H, E11L, A1Q, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="18"> <span class="test-item-counter-print">(18)</span> <span class="test-item-counter">(&gt;=&lt;&gt;)</span> <span class="test-item">418, 9125, 8161512, <span class="question-mark">?</span>, 4439434244374342443643424343</span></li>
+            <li data-tooltip="19"> <span class="test-item-counter-print">(19)</span> <span class="test-item-counter">(&gt;=&lt;=)</span> <span class="test-item">485, 1621, <span class="question-mark">?</span>, 17613</span></li>
+            <li data-tooltip="20"> <span class="test-item-counter-print">(20)</span> <span class="test-item-counter">(&gt;&lt;&gt;=)</span> <span class="test-item">378, 122535, 48520629, <span class="question-mark">?</span>, 10731118501129608</span></li>
+            <li data-tooltip="21"> <span class="test-item-counter-print">(21)</span> <span class="test-item-counter">(&gt;&lt;&gt;&lt;)</span> <span class="test-item">57138946, pqpdbdbq, 25281111610830, dqqbpdbbppqqdb, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="22"> <span class="test-item-counter-print">(22)</span> <span class="test-item-counter">(&gt;&lt;=&gt;)</span> <span class="test-item">930865, 2158657, <span class="question-mark">?</span>, 345473747567044</span></li>
+            <li data-tooltip="23"> <span class="test-item-counter-print">(23)</span> <span class="test-item-counter">(&gt;&lt;==)</span> <span class="test-item">(6771)37998, 46(7158)998, <span class="question-mark">?</span>, 46503(910119), 465037(111010)1, <span class="question-mark">?</span>, 465037998, 2121</span></li>
+            <li data-tooltip="24"> <span class="test-item-counter-print">(24)</span> <span class="test-item-counter">(=&gt;==)</span> <span class="test-item">7^4 = 14564221, 5^5 = <span class="question-mark">?</span>, 3^6 = 324189, 1^7 = 1</span></li>
+            <li data-tooltip="25"> <span class="test-item-counter-print">(25)</span> <span class="test-item-counter">(=&gt;=&lt;)</span> <span class="test-item">234, 5913, 2345117, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="26"> <span class="test-item-counter-print">(26)</span> <span class="test-item-counter">(=&gt;&lt;&gt;)</span> <span class="test-item">57301349, 6153226, <span class="question-mark">?</span>, <span class="question-mark">?</span>, 7121212</span></li>
+            <li data-tooltip="27"> <span class="test-item-counter-print">(27)</span> <span class="test-item-counter">(=&gt;&lt;=)</span> <span class="test-item">0XXX00X0: 85349, cdGf, aLQf, INae, <span class="question-mark">?</span>, 94358, LGLc, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="28"> <span class="test-item-counter-print">(28)</span> <span class="test-item-counter">(==&gt;=)</span> <span class="test-item">17.10259, 9.011223, 17.013049, 16.0130417, 20.12031607, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="29"> <span class="test-item-counter-print">(29)</span> <span class="test-item-counter">(==&gt;&lt;)</span> <span class="test-item">3390815041, <span class="question-mark">?</span>, 0129876543, <span class="question-mark">?</span>, 3861022, 431</span></li>
+            <li data-tooltip="30"> <span class="test-item-counter-print">(30)</span> <span class="test-item-counter">(===&gt;)</span> <span class="test-item"><span class="question-mark">?</span>, 020202, 151515, <span class="question-mark">?</span>, -26513513311</span></li>
+            <li data-tooltip="31"> <span class="test-item-counter-print">(31)</span> <span class="test-item-counter">(====)</span> <span class="test-item">369258147, 1934498254012031, <span class="question-mark">?</span>, 126661136136266261161136111611</span></li>
+            <li data-tooltip="32"> <span class="test-item-counter-print">(32)</span> <span class="test-item-counter">(&gt;====)</span> <span class="test-item">5656565656321090109871449914, 03, 1556102156, 0303011223, <span class="question-mark">?</span></span></li>
+            <li data-tooltip="33"> <span class="test-item-counter-print">(33)</span> <span class="test-item-counter">(&gt;===&lt;)</span> <span class="test-item"><span class="question-mark">?</span>, 111223345567, 1235, 12345, 123457, 111222333445566778899</span></li>
+            <li data-tooltip="34"> <span class="test-item-counter-print">(34)</span> <span class="test-item-counter">(&gt;==&lt;&gt;)</span> <span class="test-item">{ 191, 9, 953, 71, <span class="question-mark">?</span> } : { 135, 57135, 61461, 812, <span class="question-mark">?</span> }</span></li>
+            <li data-tooltip="35"> <span class="test-item-counter-print">(35)</span> <span class="test-item-counter">(&gt;==&lt;=)</span> <span class="test-item">1234, &gt;&gt;=, 16242416, &lt;=, <span class="question-mark">?</span>, &gt;, 5555773333331155</span></li>
+            <li data-tooltip="36"> <span class="test-item-counter-print">(36)</span> <span class="test-item-counter">(&gt;=&lt;&gt;=)</span> <span class="test-item">114.3, 5497431.65627, 944143.107727466, 43.4042, 82217122.24318018, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span>, <span class="question-mark">?</span></span></li>
+        </ul>
+
+        <div class="separator"></div>
+
+        <div class="text-area">
+            <input type="checkbox" id="about-test-toggle" class="toggle">
+            <label for="about-test-toggle"><h2>Instructions</h2></label>
+            <div class="content">
+                <p>Please work alone without sharing or discussing these items with others.</p>
+                <p>I have spent thoughtful effort into embedding clues within each puzzle, aiming to make solving a step-by-step deductive process.</p>
+                <p>Therefore, you can trust that everything is solvable by keen observation and logical deduction <strong>alone</strong>.</p>
+                <p>Pen and paper may assist in reconstructing the answer, but a calculator will <strong>NOT</strong> be necessary.</p>
+            </div>
+        </div>
+        <div class="text-area">
+            <input type="checkbox" id="instructions-toggle" class="toggle">
+            <label for="instructions-toggle"><h2>Submission</h2></label>
+            <div class="content">
+                <p>Email your solutions to <a href="mailto:nsl36submission@gmail.com">nsl36submission@gmail.com</a>. Upon submission, you can expect a score report within 24-48 hours, provided I am in good health and active.</p>
+                <p>Note: there is a fee of €30 per submission via PayPal, with a limit of one submission per person.</p>
+                <p>Additionally, I require verification of identity through an identity card, passport, or driver's license. Sensitive information may be redacted, but your full name, country, date of birth, and photo must be visible.</p>
+                <p>Since I do not know what this test measures, there is no norm.</p>
+            </div>
+        </div>
+        <div class="text-area">
+            <input type="checkbox" id="about-myself-toggle" class="toggle">
+            <label for="about-myself-toggle"><h2>About myself</h2></label>
+            <div class="content">
+                <p>I'm Andrei Udriște, a 27-year-old from Romania.</p>
+                <p>Since I was a little kid, I've been drawn to puzzles of all kinds. Numbers in particular have always been my stronger suit.</p>
+                <p>In terms of other online tests, I've achieved notable scores such as:</p>
+                <table>
+                    <tr>
+                        <td><a href="https://ivec.ultimaiq.net/speed.htm" target="_blank">SPEED</a></td>
+                        <td>27/30</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://dubravsky.szm.com/seqs1.html" target="_blank">SEQS I</a></td>
+                        <td>36/50</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://iq-tests-for-the-high-range.com/tfg16.html" target="_blank">Test For Genius</a></td>
+                        <td>53/87</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://ivec.ultimaiq.net/lshr.html" target="_blank">LSHR</a></td>
+                        <td>20.5/30</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://iq-tests-for-the-high-range.com/altt.html" target="_blank">Associative LIMIT</a></td>
+                        <td>76/90</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://ivec.ultimaiq.net/numerus.html" target="_blank">Numerus</a></td>
+                        <td>21/30</td>
+                    </tr>
+                  </table>
+                <p>Currently developing <strong>Logica Rigor Numerorum 38</strong>, a related test.</p>
+            </div>
+        </div>
+        
+        <script>
+            document.addEventListener('copy', function(event)
+            {
+                event.preventDefault();
+                const selection = window.getSelection().toString();
+                const regex = /\([<=>\s]*\)/g;
+
+                function getReplacementNumber(encodedNumeral)
+                {
+                    var properNumeral = 1;
+                    for (var i = 1; i < encodedNumeral.length - 1; i++)
+                    {
+                        var lastBit = properNumeral % 2;
+                        properNumeral *= 2;
+                        properNumeral += (encodedNumeral[i] == '=' ? lastBit : encodedNumeral[i] == '<' ? 1 : 0);
+                    }
+                    return `(${properNumeral})`;
+                }
+
+                const modifiedText = selection.replace(regex, (match) => getReplacementNumber(match));
+                event.clipboardData.setData('text/plain', modifiedText);
+            });
+        </script>
+    </body>
+</html>
